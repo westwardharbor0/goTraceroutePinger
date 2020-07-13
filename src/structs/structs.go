@@ -1,4 +1,4 @@
-package main
+package structs
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 
 //Pinged strcuture of ping response
 type Pinged struct {
-	Adress  string
+	Address string
 	Average string
 	Max     string
 	Min     string
@@ -18,7 +18,7 @@ func (p Pinged) String() string {
 	return fmt.Sprintf(
 		"%v | %s --> Max:%s , Average:%s , Min:%s \n",
 		time.Now().Unix(),
-		p.Adress,
+		p.Address,
 		p.Max,
 		p.Average,
 		p.Min,

@@ -1,4 +1,4 @@
-package main
+package localfile
 
 import (
 	"encoding/json"
@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func fileCreate(path string) {
+func FileCreate(path string) {
 	file, err := os.OpenFile(path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0777)
 	if err != nil {
 		log.Fatal(err)
@@ -14,7 +14,7 @@ func fileCreate(path string) {
 	file.Close()
 }
 
-func writeFile(path string, line string) {
+func WriteFile(path string, line string) {
 	file, err := os.OpenFile(path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0777)
 	if err != nil {
 		log.Fatal(err)
@@ -26,7 +26,7 @@ func writeFile(path string, line string) {
 	file.Close()
 }
 
-func fileLoad(file string) ([]string, error) {
+func FileLoad(file string) ([]string, error) {
 	var urls []string
 	urlsFile, err := os.Open(file)
 	defer urlsFile.Close()

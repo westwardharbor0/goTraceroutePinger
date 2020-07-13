@@ -1,4 +1,4 @@
-package main
+package routeping
 
 import (
 	"bytes"
@@ -7,11 +7,13 @@ import (
 	"strconv"
 	"strings"
 
+	. "../structs"
+
 	ping "github.com/sparrc/go-ping"
 )
 
 //getRoutePoints trought terminal gets and parses traceroute
-func getRoutePoints(ip string) []string {
+func GetRoutePoints(ip string) []string {
 	var points []string
 	cmd := exec.Command("traceroute", ip)
 	cmdOutput := &bytes.Buffer{}
@@ -32,8 +34,8 @@ func getRoutePoints(ip string) []string {
 	return points
 }
 
-//pingAdress coroutine ping the endpoint and send Pinged struct back
-func pingAdress(c chan Pinged, adress string, count int) {
+//pingAddress coroutine ping the endpoint and send Pinged struct back
+func PingAddress(c chan Pinged, adress string, count int) {
 	pinger, err := ping.NewPinger(adress)
 	if err != nil {
 		panic(err)

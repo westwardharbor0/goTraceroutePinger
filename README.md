@@ -1,10 +1,6 @@
 # goTraceroutePinger
 utility to ping all points on the route to target
-
-# Requirements
-```bash
-"github.com/sparrc/go-ping"
-```
+so far tested only on `debian` and `MacOS`
 
 # Run locally
 ```Bash

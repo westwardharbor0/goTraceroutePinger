@@ -42,7 +42,7 @@ func PingAddress(c chan Pinged, adress string, count int) {
 	cmd.Stdout = cmdOutput
 	err := cmd.Run()
 	lines := string(cmdOutput.Bytes())
-	values := parserPingResponse(lines)
+	values := parsePingResponse(lines)
 	if err != nil {
 		c <- Pinged{
 			Address: adress,
@@ -62,11 +62,12 @@ func PingAddress(c chan Pinged, adress string, count int) {
 	}
 }
 
+//parsePingError - parses known errors from ping command
 func parsePingError(err error, response string) string {
-	if err.Error() == "exit status 2" {
+	if err.Error() == "exit status 2" || err.Error() == "exit status 1" {
 		spl := strings.Split(response, "\n")
 		for _, txt := range spl {
-			if strings.Contains(txt, "100.0%") {
+			if strings.Contains(txt, "100.0%") || strings.Contains(txt, "100%") {
 				return "100% packet loss"
 			}
 		}
@@ -74,7 +75,8 @@ func parsePingError(err error, response string) string {
 	return response
 }
 
-func parserPingResponse(response string) []string {
+//parsePingResponse - parses ping commnad response to Min Max Avg values
+func parsePingResponse(response string) []string {
 	spl := strings.Split(response, "\n")
 	values := []string{"0", "0", "0", "0"}
 	for _, txt := range spl {

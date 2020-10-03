@@ -18,7 +18,7 @@ func main() {
 		checkpoints := GetRoutePoints(target)
 		folder := fmt.Sprintf("tests/%v_%s", time.Now().Unix(), target)
 		os.Mkdir(folder, os.ModePerm)
-		for i := 0; i < 1000; i++ {
+		for i := 0; i < 50000; i++ {
 			for _, point := range checkpoints {
 				c := make(chan Pinged)
 				go PingAddress(c, point, 1)

@@ -1,5 +1,5 @@
 # goTraceroutePinger
-utility to ping all points on the route to target
+utility to ping all points on the route to target <br>
 so far tested only on `debian` and `MacOS`
 
 # Run locally

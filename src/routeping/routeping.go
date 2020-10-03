@@ -22,7 +22,7 @@ func GetRoutePoints(ip string) []string {
 		os.Stderr.WriteString(err.Error())
 	}
 	lines := string(cmdOutput.Bytes())
-	spl := strings.Split(lines, "\n")
+	spl := strings.Split(lines, "  ")
 	for _, txt := range spl {
 		if strings.Contains(txt, "(") &&
 			!strings.Contains(txt, "traceroute") {
